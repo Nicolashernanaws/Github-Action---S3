@@ -13,18 +13,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Configure AWS Credentials
+      - name: Configure AWS Credentials using OIDC
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: arn:aws:iam::253490770873:role/Nc-github-action
           aws-region: us-east-2
-          role-session-name: github-actions
 
-      - name: Sync files to S3
+      - name: Sync index.html to S3
         run: |
           aws s3 sync . s3://nc-s3-deploy --delete
 
-      - name: Invalidate CloudFront
+      - name: Invalidate CloudFront cache
         run: |
           aws cloudfront create-invalidation --distribution-id E339T0S8OTBXSJ --paths "/*"
 
