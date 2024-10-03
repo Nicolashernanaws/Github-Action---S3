@@ -16,7 +16,7 @@ jobs:
       - name: Configure AWS Credentials using OIDC
         uses:  aws-actions/configure-aws-credentials@v1
         with:
-            role-to-assume: arn:aws:iam::253490770873:role/Nc-github-action
+            role-to-assume: arn:aws:iam::253490770873:role/nc-git-2
             aws-region: us-east-2
 
 
